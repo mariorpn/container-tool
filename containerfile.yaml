@@ -1,0 +1,10 @@
+FROM ubi9
+
+RUN rpm -Uvh https://dl.fedoraproject.org/pub/epel/9/Everything/x86_64/Packages/e/epel-release-9-9.el9.noarch.rpm && \
+yum install tcpdump dstat sysstat tcpdump traceroute mtr nload nmap fio nfs-utils vim iptraf jq iotop iptraf htop numatop wget iperf -yq && \
+yum clean all && \
+wget https://mirror.openshift.com/pub/openshift-v4/aarch64/clients/ocp/latest/openshift-client-linux-arm64-rhel8-4.17.11.tar.gz -O openshift-client.tar.gz && \
+tar -xvzf openshift-client.tar.gz -C /usr/local/bin/ && \
+rm -f openshift-client.tar.gz /usr/local/bin/READ.me && \
+chmod a+x /usr/local/bin/oc && \
+chmod a+x /usr/local/bin/kubectl
